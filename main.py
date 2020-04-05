@@ -80,8 +80,6 @@ class Ui_MainWindow(object):
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
-
-
         self.manageComboBox()
         self.add1.clicked.connect(self.add1Func)
         self.add2.clicked.connect(self.add2Func)
@@ -108,7 +106,6 @@ class Ui_MainWindow(object):
     def manageComboBox(self):
         maker = MakeData()
         maker.makeAll()
-
         for i in range(len(maker.data_shufersal)):
             self.shuf.append(maker.data_shufersal[i])
             self.comboBox1.addItem(maker.data_shufersal[i].product_name)
@@ -118,15 +115,11 @@ class Ui_MainWindow(object):
         for k in range(len(maker.data_ramilevi)):
             self.ramilevi.append((maker.data_ramilevi[k]))
             self.comboBox_3.addItem(maker.data_ramilevi[k].product_name)
-
-
-
-
+            
     def add1Func(self):
         text = str(self.comboBox1.currentText())
         all_text = self.label_1.text() + "\n" + text
         self.label_1.setText(all_text)
-
         for i in range(len(self.shuf)):
             if (self.comboBox1.currentText() == self.shuf[i].product_name):
                 self.product_shufersal.append(self.shuf[i])
@@ -135,7 +128,6 @@ class Ui_MainWindow(object):
         text = str(self.comboBox_2.currentText())
         all_text = self.label_2.text() + "\n" + text
         self.label_2.setText(all_text)
-
         for i in range(len(self.market)):
             if (self.comboBox_2.currentText() == self.market[i].product_name):
                 self.product_market.append(self.market[i])
@@ -144,34 +136,26 @@ class Ui_MainWindow(object):
         text = str(self.comboBox_3.currentText())
         all_text = self.label_3.text() + "\n" + text
         self.label_3.setText(all_text)
-
         for i in range(len(self.ramilevi)):
             if (self.comboBox_3.currentText() == self.ramilevi[i].product_name):
                 self.product_ramilevi.append(self.ramilevi[i])
-
 
     def calc(self):
         shuf_total = 0
         market_total = 0
         ramilevi_total = 0
-
         for i in range(len(self.product_shufersal)):
             shuf_total += float(self.product_shufersal[i].price)
         for j in range(len(self.product_market)):
              market_total += float(self.product_market[j].price)
         for k in range(len(self.product_ramilevi)):
              ramilevi_total += float(self.product_ramilevi[k].price)
-
         self.price1.clear()
         self.price1.setText("Shufersal price : " + str(shuf_total))
         self.price2.clear()
         self.price2.setText("Storage market price : " + str(market_total))
         self.price3.clear()
         self.price3.setText("Rami Levi price : " + str(ramilevi_total))
-
-
-
-
 
 if __name__ == "__main__":
     import sys
